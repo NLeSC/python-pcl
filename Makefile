@@ -25,5 +25,9 @@ doc: build/html/readme.html
 build/html/readme.html: pcl/_pcl.so conf.py readme.rst
 	sphinx-build -b singlehtml -d build/doctrees . build/html
 
+gh-pages: doc
+	touch build/html/.nojekyll
+	./commit-to-gh-pages.sh build/html
+
 showdoc: doc
 	gvfs-open build/html/readme.html
