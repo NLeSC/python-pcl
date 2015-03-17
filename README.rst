@@ -1,6 +1,6 @@
 .. raw:: html
 
-    <a href="https://github.com/strawlab/python-pcl">
+    <a href="https://github.com/NLeSC/python-pcl">
     <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
     <script type="text/javascript">
@@ -14,8 +14,8 @@
       })();
     </script>
 
-.. image:: https://travis-ci.org/larsmans/python-pcl.svg
-    :target: https://travis-ci.org/larsmans/python-pcl
+.. image:: https://travis-ci.org/NLeSC/python-pcl.svg
+    :target: https://travis-ci.org/NLeSC/python-pcl
 
 Introduction
 ============
@@ -71,7 +71,7 @@ using all the familiar NumPy functionality:
 More samples can be found in the `examples directory <https://github.com/strawlab/python-pcl/tree/master/examples>`_,
 and in the `unit tests <https://github.com/strawlab/python-pcl/blob/master/tests/test.py>`_.
 
-This work was supported by `Strawlab <http://strawlab.org/>`_.
+This work was supported by `Strawlab <http://strawlab.org/>`_ and `the Netherlands eScience Center <http://nlesc.nl/>`_
 
 Requirements
 ------------
