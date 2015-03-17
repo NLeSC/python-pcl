@@ -157,13 +157,16 @@ DATA ascii
     with open("/tmp/test.pcd", "w") as f:
         f.write(TMPL % {"npts": npts, "data": SEGDATA.replace(";", "")})
 
-    p = pcl.load("/tmp/test.pcd")
+    p = pcl.load("/tmp/test.pcd", loadRGB=False)
 
     assert p.width == npts
     assert p.height == 1
 
     for i, row in enumerate(a):
         pt = np.array(p[i])
+        print row
+        print pt
+        print '\n'
         ssd = sum((row - pt) ** 2)
         assert ssd < 1e-6
 
