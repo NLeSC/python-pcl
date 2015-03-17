@@ -234,7 +234,8 @@ class TestSegmentCylinder(unittest.TestCase):
     def setUp(self):
         self.p = pcl.load("tests/table_scene_mug_stereo_textured_noplane.pcd")
 
-    def testSegment(self):
+    def testSegmentation_correctNumberOfPoints(self):
+        # Arrange
         seg = self.p.make_segmenter_normals(50)
         seg.set_optimize_coefficients(True)
         seg.set_model_type(pcl.SACMODEL_CYLINDER)
@@ -244,14 +245,17 @@ class TestSegmentCylinder(unittest.TestCase):
         seg.set_distance_threshold(0.05)
         seg.set_radius_limits(0, 0.1)
 
+        # Act
         indices, model = seg.segment()
 
-        self.assertEqual(len(indices), SEGCYLIN)
-
-        # npexp = np.array(SEGCYLMOD)
-        # npmod = np.array(model)
-        # ssd = sum((npexp - npmod) ** 2)
-        # self.assertLess(ssd, 1e-6)
+        # Assert
+        expected = SEGCYLIN
+        actual = len(indices)
+        margin = 5
+        error = abs(actual - expected)
+        message = 'expected number of points ' + `expected` + \
+            ' does not match actual ' + `actual` + '.'
+        assert error < margin, message
 
 
 class TestSave(unittest.TestCase):
