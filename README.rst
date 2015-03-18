@@ -14,8 +14,16 @@
       })();
     </script>
 
-.. image:: https://travis-ci.org/NLeSC/python-pcl.svg
-    :target: https://travis-ci.org/NLeSC/python-pcl
+|Travis|_ |Quality-score|_ |Coverage|_
+
+.. |Travis| image:: https://travis-ci.org/NLeSC/python-pcl.svg
+.. _Travis: https://travis-ci.org/NLeSC/python-pcl
+
+.. |Quality-score| image:: https://scrutinizer-ci.com/g/NLeSC/python-pcl/badges/quality-score.png?b=master
+.. _Quality-score: https://scrutinizer-ci.com/g/NLeSC/python-pcl/
+
+.. |Coverage| image:: https://scrutinizer-ci.com/g/NLeSC/python-pcl/badges/coverage.png?b=master
+.. _Coverage: https://scrutinizer-ci.com/g/NLeSC/python-pcl/
 
 Introduction
 ============
