@@ -13,6 +13,7 @@ before_install:
   - "sudo apt-get -q -y install libeigen3-dev"
   - "pip install python-coveralls"
   - "cat /usr/include/eigen3/Eigen/Sparse"
+  - "pip install coverage"
   
 install:
   - "make all"
@@ -23,5 +24,6 @@ install:
 # command to run tests, e.g. python setup.py test
 script:  make test
 
-after_success:
-  - coveralls
+after_script:
+- "pip install scrutinizer-ocular"
+- "ocular"
