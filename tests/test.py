@@ -163,7 +163,7 @@ DATA ascii
     assert p.height == 1
 
     for i, row in enumerate(a):
-        pt = np.array(p[i])
+        pt = np.array(p[i])[:3]
         ssd = sum((row - pt) ** 2)
         assert ssd < 1e-6
 
