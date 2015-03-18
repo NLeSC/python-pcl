@@ -1,6 +1,6 @@
 tools:
     external_code_coverage:
-        timeout: 600
+        timeout: 3600
 checks:
     python:
         code_rating: true
