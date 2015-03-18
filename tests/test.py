@@ -164,9 +164,6 @@ DATA ascii
 
     for i, row in enumerate(a):
         pt = np.array(p[i])
-        print row
-        print pt
-        print '\n'
         ssd = sum((row - pt) ** 2)
         assert ssd < 1e-6
 
