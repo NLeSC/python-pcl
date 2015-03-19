@@ -80,7 +80,7 @@ API Documentation
    pcl.PassThroughFilter
    pcl.VoxelGridFilter
 
-For API documentation, look at our `gh-pages branch <https://github.com/NLeSC/python-pcl>`_
+For API documentation, look at our `gh-pages branch <http://nlesc.github.io/python-pcl/>`_
 For deficiencies in this documentation, please consult the
 `PCL API docs <http://docs.pointclouds.org/trunk/index.html>`_, and the
 `PCL tutorials <http://pointclouds.org/documentation/tutorials/>`_.
