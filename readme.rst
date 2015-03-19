@@ -39,28 +39,7 @@ point types
  * filtering
 
 The code tries to follow the Point Cloud API, and also provides helper function
-for interacting with NumPy. For example (from tests/test.py)
-
-.. code-block:: python
-
-    import pcl
-    import numpy as np
-    p = pcl.PointCloud(np.array([[1, 2, 3], [3, 4, 5]], dtype=np.float32))
-    seg = p.make_segmenter()
-    seg.set_model_type(pcl.SACMODEL_PLANE)
-    seg.set_method_type(pcl.SAC_RANSAC)
-    indices, model = seg.segment()
-
-or, for smoothing
-
-.. code-block:: python
-
-    import pcl
-    p = pcl.load("C/table_scene_lms400.pcd")
-    fil = p.make_statistical_outlier_filter()
-    fil.set_mean_k (50)
-    fil.set_std_dev_mul_thresh (1.0)
-    fil.filter().to_file("inliers.pcd")
+for interacting with NumPy.
 
 Point clouds can be viewed as NumPy arrays, so modifying them is possible
 using all the familiar NumPy functionality:
@@ -90,15 +69,9 @@ Requirements
 
 This release has been tested on Linux Mint 17 with
 
- * Python 2.7.6
+ * Python 2.7.9
  * pcl 1.7.2
- * Cython 0.21.2
-
-and CentOS 6.5 with
-
- * Python 2.6.6
- * pcl 1.6.0
- * Cython 0.21
+ * Cython 0.22
 
 A note about types
 ------------------

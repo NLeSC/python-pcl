@@ -21,8 +21,8 @@ master_doc = 'readme'
 # General information about the project.
 project = u'python-pcl'
 copyright = u'2013, John Stowers'
-version = '1.0'
-release = '1.0'
+version = '1.0.patty'
+release = '1.0.patty'
 
 exclude_patterns = ['build']
 pygments_style = 'sphinx'
