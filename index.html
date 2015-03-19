@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Python Bindings to the Point Cloud Library</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.patty',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="None" href="index.html#document-index" /> 
+  </head>
+  <body role="document">
+      <div class="header" role="banner"><img class="rightlogo" src="_static/pcl_logo.png" alt="Logo"/><h1 class="heading"><a href="index.html#document-index">
+          <span>python-pcl v1.0.patty</span></a></h1>
+        <h2 class="heading"><span>Python Bindings to the Point Cloud Library</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        <a class="uplink" href="index.html#document-index">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <p><a class="reference external" href="https://travis-ci.org/NLeSC/python-pcl"><img alt="Travis" src="https://travis-ci.org/NLeSC/python-pcl.svg" /></a> <a class="reference external" href="https://scrutinizer-ci.com/g/NLeSC/python-pcl/"><img alt="Quality-score" src="https://scrutinizer-ci.com/g/NLeSC/python-pcl/badges/quality-score.png?b=master" /></a> <a class="reference external" href="https://scrutinizer-ci.com/g/NLeSC/python-pcl/"><img alt="Coverage" src="https://scrutinizer-ci.com/g/NLeSC/python-pcl/badges/coverage.png?b=master" /></a></p>
+<div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>This is a small python binding to the <a class="reference external" href="http://pointclouds.org/">pointcloud</a> library.
+Currently, the following parts of the API are wrapped (all methods operate on PointXYZRGB)
+point types</p>
+<blockquote>
+<div><ul class="simple">
+<li>I/O and integration; saving and loading PCD files</li>
+<li>segmentation</li>
+<li>SAC</li>
+<li>smoothing</li>
+<li>filtering</li>
+</ul>
+</div></blockquote>
+<p>The code tries to follow the Point Cloud API, and also provides helper function
+for interacting with NumPy.</p>
+<p>Point clouds can be viewed as NumPy arrays, so modifying them is possible
+using all the familiar NumPy functionality:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pcl</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">pcl</span><span class="o">.</span><span class="n">PointCloud</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c"># &quot;empty&quot; point cloud</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>       <span class="c"># NumPy view on the cloud</span>
+<span class="n">a</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span>                <span class="c"># fill with zeros</span>
+<span class="k">print</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>             <span class="c"># prints (0.0, 0.0, 0.0)</span>
+<span class="n">a</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>             <span class="c"># set x coordinates to 1</span>
+<span class="k">print</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>             <span class="c"># prints (1.0, 0.0, 0.0)</span>
+</pre></div>
+</div>
+<p>More samples can be found in the <a class="reference external" href="https://github.com/NLeSC/python-pcl/tree/master/examples">examples directory</a>,
+and in the <a class="reference external" href="https://github.com/NLeSC/python-pcl/blob/master/tests/test.py">unit tests</a>.</p>
+<p>This library is developed for use in our Project Patty, see <a class="reference external" href="https://github.com/NLeSC/PattyAnalytics/">this repository</a> for more interesting examples.
+Also, the reading and writing of LAS files is implemented there.</p>
+<p>This work was supported by <a class="reference external" href="http://strawlab.org/">Strawlab</a> and <a class="reference external" href="http://nlesc.nl/">the Netherlands eScience Center</a></p>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>This release has been tested on Linux Mint 17 with</p>
+<blockquote>
+<div><ul class="simple">
+<li>Python 2.7.9</li>
+<li>pcl 1.7.2</li>
+<li>Cython 0.22</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="a-note-about-types">
+<h2>A note about types<a class="headerlink" href="#a-note-about-types" title="Permalink to this headline">¶</a></h2>
+<p>Point Cloud is a heavily templated API, and consequently mapping this into
+Python using Cython is challenging.</p>
+<p>It is written in Cython, and implements enough hard bits of the API
+(from Cythons perspective, i.e the template/smart_ptr bits)  to
+provide a foundation for someone wishing to carry on.</p>
+</div>
+</div>
+<div class="section" id="api-documentation">
+<h1>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#pcl.PointCloud" title="pcl.PointCloud"><code class="xref py py-obj docutils literal"><span class="pre">pcl.PointCloud</span></code></a></td>
+<td>3-d point cloud (no color information).</td>
+</tr>
+</tbody>
+</table>
+<p>For API documentation, look at our <a class="reference external" href="http://nlesc.github.io/python-pcl/">gh-pages branch</a>
+For deficiencies in this documentation, please consult the
+<a class="reference external" href="http://docs.pointclouds.org/trunk/index.html">PCL API docs</a>, and the
+<a class="reference external" href="http://pointclouds.org/documentation/tutorials/">PCL tutorials</a>.</p>
+<span class="target" id="module-pcl"></span><dl class="class">
+<dt id="pcl.BasePyPointCloud">
+<em class="property">class </em><code class="descclassname">pcl.</code><code class="descname">BasePyPointCloud</code><a class="headerlink" href="#pcl.BasePyPointCloud" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="pcl.BasePyPointCloud.to_list">
+<code class="descname">to_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcl.BasePyPointCloud.to_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return this object as a list of tuples.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.BasePyPointCloud.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.BasePyPointCloud.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply rigid transformation t, in-place.</p>
+<dl class="docutils">
+<dt>t <span class="classifier-delimiter">:</span> <span class="classifier">ndarray, shape (4, 4)</span></dt>
+<dd>Rigid transformation.</dd>
+</dl>
+<dl class="docutils">
+<dt>self <span class="classifier-delimiter">:</span> <span class="classifier">point cloud</span></dt>
+<dd>Returns self, for convenience.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcl.PointCloud">
+<em class="property">class </em><code class="descclassname">pcl.</code><code class="descname">PointCloud</code><a class="headerlink" href="#pcl.PointCloud" title="Permalink to this definition">¶</a></dt>
+<dd><p>3-d point cloud (no color information).</p>
+<dl class="method">
+<dt id="pcl.PointCloud.get_point">
+<code class="descname">get_point</code><span class="sig-paren">(</span><em>row</em>, <em>col</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.PointCloud.get_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return point (3-tuple) at the given row/column.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.PointCloud.to_array">
+<code class="descname">to_array</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcl.PointCloud.to_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return this object as a 2D numpy array (float32).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcl.PointCloudXYZRGB">
+<em class="property">class </em><code class="descclassname">pcl.</code><code class="descname">PointCloudXYZRGB</code><a class="headerlink" href="#pcl.PointCloudXYZRGB" title="Permalink to this definition">¶</a></dt>
+<dd><p>3-d point cloud with color information.</p>
+<dl class="method">
+<dt id="pcl.PointCloudXYZRGB.get_point">
+<code class="descname">get_point</code><span class="sig-paren">(</span><em>row</em>, <em>col</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.PointCloudXYZRGB.get_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return point (3-tuple) at the given row/column.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.PointCloudXYZRGB.to_array">
+<code class="descname">to_array</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pcl.PointCloudXYZRGB.to_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return this object as a 2D numpy array (float32).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pcl.load">
+<code class="descclassname">pcl.</code><code class="descname">load</code><span class="sig-paren">(</span><em>path</em>, <em>format=None</em>, <em>loadRGB=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load pointcloud from path.</p>
+<p>Currently supports PCD and PLY files.</p>
+<p>Format should be &#8220;pcd&#8221;, &#8220;ply&#8221;, or None to infer from the pathname.</p>
+<p>An optional loadRGB parameter is included to provide the option of loading
+or ignoring colour information.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pcl.save">
+<code class="descclassname">pcl.</code><code class="descname">save</code><span class="sig-paren">(</span><em>cloud</em>, <em>path</em>, <em>format=None</em>, <em>binary=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save pointcloud to file.</p>
+<p>Format should be &#8220;pcd&#8221;, &#8220;ply&#8221;, or None to infer from the pathname.</p>
+</dd></dl>
+
+</div>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        <a class="uplink" href="index.html#document-index">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2013, John Stowers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>
