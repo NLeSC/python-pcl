@@ -59,12 +59,11 @@ class PointCloud(BasePyPointCloud):
 
 
 class PointCloudXYZRGB(BasePyPointCloud):
-    """3-d point cloud (no color information)."""
+    """3-d point cloud with color information."""
+
     def get_point(self, row, col):
         """Return point (3-tuple) at the given row/column."""
         return self._get_point(row, col)
-
-    """3-d point with color information."""
 
     def to_array(self):
         """Return this object as a 2D numpy array (float32)."""
