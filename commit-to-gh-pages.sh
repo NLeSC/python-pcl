@@ -5,7 +5,7 @@
 
 set -e -v
 
-treehash=$(./hash-tree.py "${1:-_build/html}")
+treehash=$(./hash-tree.py "${1:-build/html}")
 parent=$(git rev-parse gh-pages)
 
 msg="Regenerated docs for $(git rev-parse HEAD)"
