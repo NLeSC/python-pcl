@@ -7,3 +7,16 @@ Ensure a good code quality:
 
  * We use travis for continuous integration.
 
+
+Documentation
+-------------
+
+Generating the documentation goes as follows:
+
+1. Commit all changes to your branch (master)
+
+2. Generate and check the new documentation by doing  `make showdoc`
+
+3. do a `make gh-pages`
+
+4. do a `git push --all`
