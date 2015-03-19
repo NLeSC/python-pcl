@@ -100,21 +100,142 @@ provide a foundation for someone wishing to carry on.</p>
 For deficiencies in this documentation, please consult the
 <a class="reference external" href="http://docs.pointclouds.org/trunk/index.html">PCL API docs</a>, and the
 <a class="reference external" href="http://pointclouds.org/documentation/tutorials/">PCL tutorials</a>.</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#pcl.PointCloud" title="pcl.PointCloud"><code class="xref py py-obj docutils literal"><span class="pre">pcl.PointCloud</span></code></a></td>
-<td>3-d point cloud (no color information).</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="#pcl.PointCloudXYZRGB" title="pcl.PointCloudXYZRGB"><code class="xref py py-obj docutils literal"><span class="pre">pcl.PointCloudXYZRGB</span></code></a></td>
-<td>3-d point cloud with color information.</td>
-</tr>
-</tbody>
-</table>
-<span class="target" id="module-pcl"></span><dl class="class">
+<div class="section" id="module-pcl">
+<span id="pointcloud-class"></span><h2>Pointcloud class<a class="headerlink" href="#module-pcl" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pcl.BasePointCloud">
+<em class="property">class </em><code class="descclassname">pcl.</code><code class="descname">BasePointCloud</code><a class="headerlink" href="#pcl.BasePointCloud" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="pcl.BasePointCloud.extract">
+<code class="descname">extract</code><span class="sig-paren">(</span><em>self</em>, <em>pyindices</em>, <em>bool negative=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.BasePointCloud.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of indices of points in the pointcloud, return a 
+new pointcloud containing only those points.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.BasePointCloud.from_array">
+<code class="descname">from_array</code><span class="sig-paren">(</span><em>self</em>, <em>ndarray arr</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.BasePointCloud.from_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill this object from a 2D numpy array (float32)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.BasePointCloud.from_file">
+<code class="descname">from_file</code><span class="sig-paren">(</span><em>self</em>, <em>char *f</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.BasePointCloud.from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill this pointcloud from a file (a local path).
+Only pcd files supported currently.</p>
+<p>Deprecated; use pcl.load instead.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.BasePointCloud.from_list">
+<code class="descname">from_list</code><span class="sig-paren">(</span><em>self</em>, <em>_list</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.BasePointCloud.from_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill this pointcloud from a list of 3-tuples</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.BasePointCloud.get_point">
+<code class="descname">get_point</code><span class="sig-paren">(</span><em>self</em>, <em>npy_intp row</em>, <em>npy_intp col</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.BasePointCloud.get_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a point (6-tuple) at the given row/column</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcl.BasePointCloud.height">
+<code class="descname">height</code><a class="headerlink" href="#pcl.BasePointCloud.height" title="Permalink to this definition">¶</a></dt>
+<dd><p>property containing the height of the point cloud</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcl.BasePointCloud.is_dense">
+<code class="descname">is_dense</code><a class="headerlink" href="#pcl.BasePointCloud.is_dense" title="Permalink to this definition">¶</a></dt>
+<dd><p>property containing whether the cloud is dense or not</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.BasePointCloud.make_kdtree_flann">
+<code class="descname">make_kdtree_flann</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.BasePointCloud.make_kdtree_flann" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a pcl.kdTreeFLANN object with this object set as the input-cloud</p>
+<p>Deprecated: use the pcl.KdTreeFLANN constructor on this cloud.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.BasePointCloud.make_moving_least_squares">
+<code class="descname">make_moving_least_squares</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.BasePointCloud.make_moving_least_squares" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a pcl.MovingLeastSquares object with this object as input cloud.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.BasePointCloud.make_octree">
+<code class="descname">make_octree</code><span class="sig-paren">(</span><em>self</em>, <em>double resolution</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.BasePointCloud.make_octree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a pcl.octree object with this object set as the input-cloud</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.BasePointCloud.make_passthrough_filter">
+<code class="descname">make_passthrough_filter</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.BasePointCloud.make_passthrough_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a pcl.PassThroughFilter object with this object set as the input-cloud</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.BasePointCloud.make_segmenter">
+<code class="descname">make_segmenter</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.BasePointCloud.make_segmenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a pcl.Segmentation object with this object set as the input-cloud</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.BasePointCloud.make_segmenter_normals">
+<code class="descname">make_segmenter_normals</code><span class="sig-paren">(</span><em>self</em>, <em>int ksearch=-1</em>, <em>double searchRadius=-1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.BasePointCloud.make_segmenter_normals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a pcl.SegmentationNormal object with this object set as the input-cloud</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.BasePointCloud.make_statistical_outlier_filter">
+<code class="descname">make_statistical_outlier_filter</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.BasePointCloud.make_statistical_outlier_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a pcl.StatisticalOutlierRemovalFilter object with this object set as the input-cloud</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.BasePointCloud.make_voxel_grid_filter">
+<code class="descname">make_voxel_grid_filter</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.BasePointCloud.make_voxel_grid_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a pcl.VoxelGridFilter object with this object set as the input-cloud</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.BasePointCloud.resize">
+<code class="descname">resize</code><span class="sig-paren">(</span><em>self</em>, <em>npy_intp x</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.BasePointCloud.resize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcl.BasePointCloud.sensor_orientation">
+<code class="descname">sensor_orientation</code><a class="headerlink" href="#pcl.BasePointCloud.sensor_orientation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcl.BasePointCloud.sensor_origin">
+<code class="descname">sensor_origin</code><a class="headerlink" href="#pcl.BasePointCloud.sensor_origin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcl.BasePointCloud.size">
+<code class="descname">size</code><a class="headerlink" href="#pcl.BasePointCloud.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>property containing the number of points in the point cloud</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.BasePointCloud.to_file">
+<code class="descname">to_file</code><span class="sig-paren">(</span><em>self</em>, <em>char const *fname</em>, <em>bool ascii=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.BasePointCloud.to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save pointcloud to a file in PCD format.</p>
+<p>Deprecated: use pcl.save instead.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcl.BasePointCloud.width">
+<code class="descname">width</code><a class="headerlink" href="#pcl.BasePointCloud.width" title="Permalink to this definition">¶</a></dt>
+<dd><p>property containing the width of the point cloud</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="pcl.BasePyPointCloud">
 <em class="property">class </em><code class="descclassname">pcl.</code><code class="descname">BasePyPointCloud</code><a class="headerlink" href="#pcl.BasePyPointCloud" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
@@ -136,6 +257,148 @@ For deficiencies in this documentation, please consult the
 <dd>Returns self, for convenience.</dd>
 </dl>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcl.KdTreeFLANN">
+<em class="property">class </em><code class="descclassname">pcl.</code><code class="descname">KdTreeFLANN</code><a class="headerlink" href="#pcl.KdTreeFLANN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds k nearest neighbours from points in another pointcloud to points in
+a reference pointcloud.</p>
+<p>Must be constructed from the reference point cloud, which is copied, so
+changed to pc are not reflected in KdTreeFLANN(pc).</p>
+<dl class="method">
+<dt id="pcl.KdTreeFLANN.nearest_k_search_for_cloud">
+<code class="descname">nearest_k_search_for_cloud</code><span class="sig-paren">(</span><em>self</em>, <em>BasePointCloud pc</em>, <em>int k=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.KdTreeFLANN.nearest_k_search_for_cloud" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the k nearest neighbours and squared distances for all points
+in the pointcloud. Results are in ndarrays, size (pc.size, k)
+Returns: (k_indices, k_sqr_distances)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.KdTreeFLANN.nearest_k_search_for_point">
+<code class="descname">nearest_k_search_for_point</code><span class="sig-paren">(</span><em>self</em>, <em>BasePointCloud pc</em>, <em>int index</em>, <em>int k=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.KdTreeFLANN.nearest_k_search_for_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the k nearest neighbours and squared distances for the point
+at pc[index]. Results are in ndarrays, size (k)
+Returns: (k_indices, k_sqr_distances)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcl.MovingLeastSquares">
+<em class="property">class </em><code class="descclassname">pcl.</code><code class="descname">MovingLeastSquares</code><a class="headerlink" href="#pcl.MovingLeastSquares" title="Permalink to this definition">¶</a></dt>
+<dd><p>Smoothing class which is an implementation of the MLS (Moving Least Squares)
+algorithm for data smoothing and improved normal estimation.</p>
+<dl class="method">
+<dt id="pcl.MovingLeastSquares.process">
+<code class="descname">process</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.MovingLeastSquares.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply the smoothing according to the previously set values and return
+a new pointcloud</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.MovingLeastSquares.set_polynomial_fit">
+<code class="descname">set_polynomial_fit</code><span class="sig-paren">(</span><em>self</em>, <em>bool fit</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.MovingLeastSquares.set_polynomial_fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets whether the surface and normal are approximated using a polynomial,
+or only via tangent estimation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.MovingLeastSquares.set_polynomial_order">
+<code class="descname">set_polynomial_order</code><span class="sig-paren">(</span><em>self</em>, <em>bool order</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.MovingLeastSquares.set_polynomial_order" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the order of the polynomial to be fit.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.MovingLeastSquares.set_search_radius">
+<code class="descname">set_search_radius</code><span class="sig-paren">(</span><em>self</em>, <em>double radius</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.MovingLeastSquares.set_search_radius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the sphere radius that is to be used for determining the k-nearest neighbors used for fitting.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcl.OctreePointCloud">
+<em class="property">class </em><code class="descclassname">pcl.</code><code class="descname">OctreePointCloud</code><span class="sig-paren">(</span><em>double resolution</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.OctreePointCloud" title="Permalink to this definition">¶</a></dt>
+<dd><p>Octree pointcloud</p>
+<dl class="method">
+<dt id="pcl.OctreePointCloud.add_points_from_input_cloud">
+<code class="descname">add_points_from_input_cloud</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.OctreePointCloud.add_points_from_input_cloud" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add points from input point cloud to octree.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.OctreePointCloud.define_bounding_box">
+<code class="descname">define_bounding_box</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.OctreePointCloud.define_bounding_box" title="Permalink to this definition">¶</a></dt>
+<dd><p>Investigate dimensions of pointcloud data set and define corresponding bounding box for octree.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.OctreePointCloud.delete_tree">
+<code class="descname">delete_tree</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.OctreePointCloud.delete_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete the octree structure and its leaf nodes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.OctreePointCloud.delete_voxel_at_point">
+<code class="descname">delete_voxel_at_point</code><span class="sig-paren">(</span><em>self</em>, <em>point</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.OctreePointCloud.delete_voxel_at_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete leaf node / voxel at given point.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.OctreePointCloud.get_occupied_voxel_centers">
+<code class="descname">get_occupied_voxel_centers</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.OctreePointCloud.get_occupied_voxel_centers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get list of centers of all occupied voxels.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.OctreePointCloud.is_voxel_occupied_at_point">
+<code class="descname">is_voxel_occupied_at_point</code><span class="sig-paren">(</span><em>self</em>, <em>point</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.OctreePointCloud.is_voxel_occupied_at_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if voxel at given point coordinates exist.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.OctreePointCloud.set_input_cloud">
+<code class="descname">set_input_cloud</code><span class="sig-paren">(</span><em>self</em>, <em>BasePointCloud pc</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.OctreePointCloud.set_input_cloud" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provide a pointer to the input data set.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcl.OctreePointCloudSearch">
+<em class="property">class </em><code class="descclassname">pcl.</code><code class="descname">OctreePointCloudSearch</code><a class="headerlink" href="#pcl.OctreePointCloudSearch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Octree pointcloud search</p>
+<dl class="method">
+<dt id="pcl.OctreePointCloudSearch.radius_search">
+<code class="descname">radius_search</code><span class="sig-paren">(</span><em>self</em>, <em>point</em>, <em>double radius</em>, <em>unsigned int max_nn=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.OctreePointCloudSearch.radius_search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search for all neighbors of query point that are within a given radius.</p>
+<p>Returns: (k_indices, k_sqr_distances)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcl.PassThroughFilter">
+<em class="property">class </em><code class="descclassname">pcl.</code><code class="descname">PassThroughFilter</code><a class="headerlink" href="#pcl.PassThroughFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Passes points in a cloud based on constraints for one particular field of the point type</p>
+<dl class="method">
+<dt id="pcl.PassThroughFilter.filter">
+<code class="descname">filter</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.PassThroughFilter.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply the filter according to the previously set parameters and return
+a new pointcloud</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.PassThroughFilter.set_filter_field_name">
+<code class="descname">set_filter_field_name</code><span class="sig-paren">(</span><em>self</em>, <em>field_name</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.PassThroughFilter.set_filter_field_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcl.PassThroughFilter.set_filter_limits">
+<code class="descname">set_filter_limits</code><span class="sig-paren">(</span><em>self</em>, <em>float filter_min</em>, <em>float filter_max</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.PassThroughFilter.set_filter_limits" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -175,6 +438,185 @@ For deficiencies in this documentation, please consult the
 
 </dd></dl>
 
+<dl class="class">
+<dt id="pcl.Segmentation">
+<em class="property">class </em><code class="descclassname">pcl.</code><code class="descname">Segmentation</code><a class="headerlink" href="#pcl.Segmentation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Segmentation class for Sample Consensus methods and models</p>
+<dl class="method">
+<dt id="pcl.Segmentation.segment">
+<code class="descname">segment</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.Segmentation.segment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcl.Segmentation.set_distance_threshold">
+<code class="descname">set_distance_threshold</code><span class="sig-paren">(</span><em>self</em>, <em>float d</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.Segmentation.set_distance_threshold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcl.Segmentation.set_method_type">
+<code class="descname">set_method_type</code><span class="sig-paren">(</span><em>self</em>, <em>int m</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.Segmentation.set_method_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcl.Segmentation.set_model_type">
+<code class="descname">set_model_type</code><span class="sig-paren">(</span><em>self</em>, <em>SacModel m</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.Segmentation.set_model_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcl.Segmentation.set_optimize_coefficients">
+<code class="descname">set_optimize_coefficients</code><span class="sig-paren">(</span><em>self</em>, <em>bool b</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.Segmentation.set_optimize_coefficients" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcl.SegmentationNormal">
+<em class="property">class </em><code class="descclassname">pcl.</code><code class="descname">SegmentationNormal</code><a class="headerlink" href="#pcl.SegmentationNormal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Segmentation class for Sample Consensus methods and models that require the
+use of surface normals for estimation.</p>
+<p>Due to Cython limitations this should derive from pcl.Segmentation, but
+is currently unable to do so.</p>
+<dl class="method">
+<dt id="pcl.SegmentationNormal.segment">
+<code class="descname">segment</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.SegmentationNormal.segment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcl.SegmentationNormal.set_axis">
+<code class="descname">set_axis</code><span class="sig-paren">(</span><em>self</em>, <em>double ax</em>, <em>double ay</em>, <em>double az</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.SegmentationNormal.set_axis" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcl.SegmentationNormal.set_distance_threshold">
+<code class="descname">set_distance_threshold</code><span class="sig-paren">(</span><em>self</em>, <em>float d</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.SegmentationNormal.set_distance_threshold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcl.SegmentationNormal.set_eps_angle">
+<code class="descname">set_eps_angle</code><span class="sig-paren">(</span><em>self</em>, <em>double ea</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.SegmentationNormal.set_eps_angle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcl.SegmentationNormal.set_max_iterations">
+<code class="descname">set_max_iterations</code><span class="sig-paren">(</span><em>self</em>, <em>int i</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.SegmentationNormal.set_max_iterations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcl.SegmentationNormal.set_method_type">
+<code class="descname">set_method_type</code><span class="sig-paren">(</span><em>self</em>, <em>int m</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.SegmentationNormal.set_method_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcl.SegmentationNormal.set_model_type">
+<code class="descname">set_model_type</code><span class="sig-paren">(</span><em>self</em>, <em>SacModel m</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.SegmentationNormal.set_model_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcl.SegmentationNormal.set_normal_distance_weight">
+<code class="descname">set_normal_distance_weight</code><span class="sig-paren">(</span><em>self</em>, <em>float f</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.SegmentationNormal.set_normal_distance_weight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcl.SegmentationNormal.set_optimize_coefficients">
+<code class="descname">set_optimize_coefficients</code><span class="sig-paren">(</span><em>self</em>, <em>bool b</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.SegmentationNormal.set_optimize_coefficients" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcl.SegmentationNormal.set_radius_limits">
+<code class="descname">set_radius_limits</code><span class="sig-paren">(</span><em>self</em>, <em>float f1</em>, <em>float f2</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.SegmentationNormal.set_radius_limits" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcl.Sequence">
+<em class="property">class </em><code class="descclassname">pcl.</code><code class="descname">Sequence</code><a class="headerlink" href="#pcl.Sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>All the operations on a read-only sequence.</p>
+<p>Concrete subclasses must override __new__ or __init__,
+__getitem__, and __len__.</p>
+<dl class="method">
+<dt id="pcl.Sequence.count">
+<code class="descname">count</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span> &rarr; integer -- return number of occurrences of value<a class="headerlink" href="#pcl.Sequence.count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcl.Sequence.index">
+<code class="descname">index</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span> &rarr; integer -- return first index of value.<a class="headerlink" href="#pcl.Sequence.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raises ValueError if the value is not present.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcl.StatisticalOutlierRemovalFilter">
+<em class="property">class </em><code class="descclassname">pcl.</code><code class="descname">StatisticalOutlierRemovalFilter</code><a class="headerlink" href="#pcl.StatisticalOutlierRemovalFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter class uses point neighborhood statistics to filter outlier data.</p>
+<dl class="method">
+<dt id="pcl.StatisticalOutlierRemovalFilter.filter">
+<code class="descname">filter</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.StatisticalOutlierRemovalFilter.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply the filter according to the previously set parameters and return
+a new pointcloud</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcl.StatisticalOutlierRemovalFilter.mean_k">
+<code class="descname">mean_k</code><a class="headerlink" href="#pcl.StatisticalOutlierRemovalFilter.mean_k" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pcl.StatisticalOutlierRemovalFilter.negative">
+<code class="descname">negative</code><a class="headerlink" href="#pcl.StatisticalOutlierRemovalFilter.negative" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pcl.StatisticalOutlierRemovalFilter.set_mean_k">
+<code class="descname">set_mean_k</code><span class="sig-paren">(</span><em>self</em>, <em>int k</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.StatisticalOutlierRemovalFilter.set_mean_k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the number of points (k) to use for mean distance estimation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.StatisticalOutlierRemovalFilter.set_negative">
+<code class="descname">set_negative</code><span class="sig-paren">(</span><em>self</em>, <em>bool negative</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.StatisticalOutlierRemovalFilter.set_negative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set whether the indices should be returned, or all points except the indices.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.StatisticalOutlierRemovalFilter.set_std_dev_mul_thresh">
+<code class="descname">set_std_dev_mul_thresh</code><span class="sig-paren">(</span><em>self</em>, <em>double std_mul</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.StatisticalOutlierRemovalFilter.set_std_dev_mul_thresh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the standard deviation multiplier threshold.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pcl.StatisticalOutlierRemovalFilter.stddev_mul_thresh">
+<code class="descname">stddev_mul_thresh</code><a class="headerlink" href="#pcl.StatisticalOutlierRemovalFilter.stddev_mul_thresh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pcl.VoxelGridFilter">
+<em class="property">class </em><code class="descclassname">pcl.</code><code class="descname">VoxelGridFilter</code><a class="headerlink" href="#pcl.VoxelGridFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assembles a local 3D grid over a given PointCloud, and downsamples + filters the data.</p>
+<dl class="method">
+<dt id="pcl.VoxelGridFilter.filter">
+<code class="descname">filter</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.VoxelGridFilter.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply the filter according to the previously set parameters and return
+a new pointcloud</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pcl.VoxelGridFilter.set_leaf_size">
+<code class="descname">set_leaf_size</code><span class="sig-paren">(</span><em>self</em>, <em>float x</em>, <em>float y</em>, <em>float z</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.VoxelGridFilter.set_leaf_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the voxel grid leaf size.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pcl.float_to_rgb">
+<code class="descclassname">pcl.</code><code class="descname">float_to_rgb</code><span class="sig-paren">(</span><em>p_rgb</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.float_to_rgb" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="function">
 <dt id="pcl.load">
 <code class="descclassname">pcl.</code><code class="descname">load</code><span class="sig-paren">(</span><em>path</em>, <em>format=None</em>, <em>loadRGB=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.load" title="Permalink to this definition">¶</a></dt>
@@ -192,6 +634,130 @@ or ignoring colour information.</p>
 <p>Format should be &#8220;pcd&#8221;, &#8220;ply&#8221;, or None to infer from the pathname.</p>
 </dd></dl>
 
+</div>
+<div class="section" id="module-pcl.registration">
+<span id="registration-functions"></span><h2>Registration functions<a class="headerlink" href="#module-pcl.registration" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pcl.registration.gicp">
+<code class="descclassname">pcl.registration.</code><code class="descname">gicp</code><span class="sig-paren">(</span><em>BasePointCloud source</em>, <em>BasePointCloud target</em>, <em>max_iter=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.registration.gicp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Align source to target using generalized iterative closest point (GICP).</p>
+<dl class="docutils">
+<dt>source <span class="classifier-delimiter">:</span> <span class="classifier">point cloud</span></dt>
+<dd>Source point cloud.</dd>
+<dt>target <span class="classifier-delimiter">:</span> <span class="classifier">point cloud</span></dt>
+<dd>Target point cloud.</dd>
+<dt>max_iter <span class="classifier-delimiter">:</span> <span class="classifier">integer, optional</span></dt>
+<dd>Maximum number of iterations. If not given, uses the default number
+hardwired into PCL.</dd>
+</dl>
+<dl class="docutils">
+<dt>converged <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd>Whether the ICP algorithm converged in at most max_iter steps.</dd>
+<dt>transf <span class="classifier-delimiter">:</span> <span class="classifier">np.ndarray, shape = [4, 4]</span></dt>
+<dd>Transformation matrix.</dd>
+<dt>estimate <span class="classifier-delimiter">:</span> <span class="classifier">point cloud</span></dt>
+<dd>Transformed version of source. Will be of the same type as source.</dd>
+<dt>fitness <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd>Sum of squares error in the estimated transformation.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pcl.registration.ia_ransac">
+<code class="descclassname">pcl.registration.</code><code class="descname">ia_ransac</code><span class="sig-paren">(</span><em>BasePointCloud source</em>, <em>BasePointCloud target</em>, <em>max_iter=None</em>, <em>radius=0.05</em>, <em>minSampleDistance=0.05</em>, <em>maxCorrespondenceDistance=0.2</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.registration.ia_ransac" title="Permalink to this definition">¶</a></dt>
+<dd><p>An implementation of the initial alignment algorithm described in section IV
+of &#8220;Fast Point Feature Histograms (FPFH) for 3D Registration,&#8221; Rusu et al.</p>
+<dl class="docutils">
+<dt>source <span class="classifier-delimiter">:</span> <span class="classifier">PointCloud</span></dt>
+<dd>Source point cloud.</dd>
+<dt>target <span class="classifier-delimiter">:</span> <span class="classifier">PointCloud</span></dt>
+<dd>Target point cloud.</dd>
+<dt>max_iter <span class="classifier-delimiter">:</span> <span class="classifier">integer, optional</span></dt>
+<dd>Maximum number of iterations. If not given, uses the default number
+hardwired into PCL.</dd>
+<dt>radius <span class="classifier-delimiter">:</span> <span class="classifier">double</span></dt>
+<dd>Radius in which neighbours are searched for in the NormalEstimation algorithm.</dd>
+<dt>minSampleDistance <span class="classifier-delimiter">:</span> <span class="classifier">double</span></dt>
+<dd>Set the minimum distances between samples.</dd>
+<dt>maxCorrespondenceDistance <span class="classifier-delimiter">:</span> <span class="classifier">double</span></dt>
+<dd>Set the maximum distance threshold between two correspondent points in source &lt;-&gt; target.</dd>
+</dl>
+<dl class="docutils">
+<dt>converged <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd>Whether the ICP algorithm converged in at most max_iter steps.</dd>
+<dt>estimate <span class="classifier-delimiter">:</span> <span class="classifier">PointCloud</span></dt>
+<dd>Transformed version of source.</dd>
+<dt>fitness <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd>Sum of squares error in the estimated transformation.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pcl.registration.icp">
+<code class="descclassname">pcl.registration.</code><code class="descname">icp</code><span class="sig-paren">(</span><em>BasePointCloud source</em>, <em>BasePointCloud target</em>, <em>max_iter=None</em>, <em>transformationEpsilon=None</em>, <em>euclideanFitnessEpsilon=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.registration.icp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Align source to target using iterative closest point (ICP).</p>
+<dl class="docutils">
+<dt>source <span class="classifier-delimiter">:</span> <span class="classifier">point cloud</span></dt>
+<dd>Source point cloud.</dd>
+<dt>target <span class="classifier-delimiter">:</span> <span class="classifier">point cloud</span></dt>
+<dd>Target point cloud.</dd>
+<dt>max_iter <span class="classifier-delimiter">:</span> <span class="classifier">integer, optional</span></dt>
+<dd>Maximum number of iterations. If not given, uses the pcl default (10)
+hardwired into PCL.</dd>
+<dt>transformationEpsilon <span class="classifier-delimiter">:</span> <span class="classifier">double, optional</span></dt>
+<dd>Maximum difference between two consecutive transformations, before the algorithm is considered to have converged. If not given, uses the pcl default (0)</dd>
+<dt>euclideanFitnessEpsilon <span class="classifier-delimiter">:</span> <span class="classifier">double, optional</span></dt>
+<dd>Maximum Euclidean error between two consecutive steps in the ICP loop, before the algorithm is considered to have converged. If not given, uses the pcl default (max)</dd>
+</dl>
+<dl class="docutils">
+<dt>converged <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd>Whether the ICP algorithm converged in at most max_iter steps.</dd>
+<dt>transf <span class="classifier-delimiter">:</span> <span class="classifier">np.ndarray, shape = [4, 4]</span></dt>
+<dd>Transformation matrix.</dd>
+<dt>estimate <span class="classifier-delimiter">:</span> <span class="classifier">point cloud</span></dt>
+<dd>Transformed version of source. Will be of the same type as source.</dd>
+<dt>fitness <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd>Sum of squares error in the estimated transformation.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pcl.registration.icp_nl">
+<code class="descclassname">pcl.registration.</code><code class="descname">icp_nl</code><span class="sig-paren">(</span><em>BasePointCloud source</em>, <em>BasePointCloud target</em>, <em>max_iter=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.registration.icp_nl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Align source to target using generalized non-linear ICP (ICP-NL).</p>
+<dl class="docutils">
+<dt>source <span class="classifier-delimiter">:</span> <span class="classifier">point cloud</span></dt>
+<dd>Source point cloud.</dd>
+<dt>target <span class="classifier-delimiter">:</span> <span class="classifier">point cloud</span></dt>
+<dd>Target point cloud.</dd>
+<dt>max_iter <span class="classifier-delimiter">:</span> <span class="classifier">integer, optional</span></dt>
+<dd>Maximum number of iterations. If not given, uses the default number
+hardwired into PCL.</dd>
+</dl>
+<dl class="docutils">
+<dt>converged <span class="classifier-delimiter">:</span> <span class="classifier">bool</span></dt>
+<dd>Whether the ICP algorithm converged in at most max_iter steps.</dd>
+<dt>transf <span class="classifier-delimiter">:</span> <span class="classifier">np.ndarray, shape = [4, 4]</span></dt>
+<dd>Transformation matrix.</dd>
+<dt>estimate <span class="classifier-delimiter">:</span> <span class="classifier">point cloud</span></dt>
+<dd>Transformed version of source. Will be of the same type as source.</dd>
+<dt>fitness <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd>Sum of squares error in the estimated transformation.</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pcl.boundaries">
+<span id="boundary-detection"></span><h2>Boundary detection<a class="headerlink" href="#module-pcl.boundaries" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pcl.boundaries.estimate_boundaries">
+<code class="descclassname">pcl.boundaries.</code><code class="descname">estimate_boundaries</code><span class="sig-paren">(</span><em>BasePointCloud pc</em>, <em>float angle_threshold</em>, <em>double search_radius</em>, <em>int normal_ksearch=-1</em>, <em>double normal_search_radius=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#pcl.boundaries.estimate_boundaries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boundary estimation.</p>
+<p>Returns an array of booleans (true = boundary point); one per point in
+the point cloud pc.</p>
+</dd></dl>
+
+</div>
 </div>
 
 

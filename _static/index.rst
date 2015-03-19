@@ -76,17 +76,27 @@ For deficiencies in this documentation, please consult the
 `PCL API docs <http://docs.pointclouds.org/trunk/index.html>`_, and the
 `PCL tutorials <http://pointclouds.org/documentation/tutorials/>`_.
 
-.. autosummary::
-   pcl.PointCloud
-   pcl.PointCloudXYZRGB
-   pcl.Segmentation
-   pcl.SegmentationNormal
-   pcl.StatisticalOutlierRemovalFilter
-   pcl.MovingLeastSquares
-   pcl.PassThroughFilter
-   pcl.VoxelGridFilter
+
+Pointcloud class
+----------------
 
 .. automodule:: pcl
+   :members:
+   :undoc-members:
+   :imported-members:
+
+
+Registration functions
+----------------------
+
+.. automodule:: pcl.registration
+   :members:
+   :undoc-members:
+
+Boundary detection
+------------------
+
+.. automodule:: pcl.boundaries
    :members:
    :undoc-members:
 
