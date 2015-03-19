@@ -71,19 +71,20 @@ provide a foundation for someone wishing to carry on.
 API Documentation
 =================
 
+For API documentation, look at our `gh-pages branch <http://nlesc.github.io/python-pcl/>`_
+For deficiencies in this documentation, please consult the
+`PCL API docs <http://docs.pointclouds.org/trunk/index.html>`_, and the
+`PCL tutorials <http://pointclouds.org/documentation/tutorials/>`_.
+
 .. autosummary::
    pcl.PointCloud
+   pcl.PointCloudXYZRGB
    pcl.Segmentation
    pcl.SegmentationNormal
    pcl.StatisticalOutlierRemovalFilter
    pcl.MovingLeastSquares
    pcl.PassThroughFilter
    pcl.VoxelGridFilter
-
-For API documentation, look at our `gh-pages branch <http://nlesc.github.io/python-pcl/>`_
-For deficiencies in this documentation, please consult the
-`PCL API docs <http://docs.pointclouds.org/trunk/index.html>`_, and the
-`PCL tutorials <http://pointclouds.org/documentation/tutorials/>`_.
 
 .. automodule:: pcl
    :members:
