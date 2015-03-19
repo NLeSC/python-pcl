@@ -20,21 +20,14 @@ clean:
 	rm -f pcl/*.so
 	rm -f pcl/_pcl.cpp pcl/boundaries.cpp pcl/registration.cpp
 
-doc: build/html/readme.html
+doc: build/html/index.html
 
-build/html/readme.html: pcl/_pcl.so conf.py readme.rst
-	sphinx-build -b singlehtml -d build/doctrees . build/html
+build/html/index.html: pcl/_pcl.so doc/conf.py doc/index.rst
+	sphinx-build -b singlehtml -d build/doctrees doc build/html
 
 gh-pages: doc
 	touch build/html/.nojekyll
-	ln -fs readme.html build/html/index.html
-	rm -rf build/html/_static/pcl build/html/_static/tests
-	rm -rf build/html/_static/examples
-	rm -rf build/html/_static/*.las
-	rm -rf build/html/_static/*.pcd
-	rm -rf build/html/_static/*.pyc
-	rm -rf build/html/_static/*.rst
 	./commit-to-gh-pages.sh build/html
 
 showdoc: doc
-	gvfs-open build/html/readme.html
+	gvfs-open build/html/index.html

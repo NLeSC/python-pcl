@@ -16,7 +16,7 @@ templates_path = ['.']
 html_static_path = ['.']
 
 source_suffix = '.rst'
-master_doc = 'readme'
+master_doc = 'index'
 
 # General information about the project.
 project = u'python-pcl'
