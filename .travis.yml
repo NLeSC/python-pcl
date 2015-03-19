@@ -1,29 +1,22 @@
 language: python
 python:  
   - "2.7"  
-# command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 
 before_install:
   - "sudo add-apt-repository ppa:v-launchpad-jochen-sprickerhof-de/pcl -y"
   - "sudo apt-get update"
-  - "pip install cython -q"
-  - "export DEBIAN_FRONTEND=noninteractive"
-  #- "sudo apt-get -q -y upgrade"
   - "sudo apt-get -q -y install libpcl-all"
-  - "sudo apt-get -q -y install libeigen3-dev"
-  - "pip install python-coveralls"
-  - "cat /usr/include/eigen3/Eigen/Sparse"
+  - "pip install cython -q"
   - "pip install coverage"
   
 install:
   - "make all"
-  - "pwd"
-  - "ls"
-  - "ldd pcl/registration.so"
-  - "env"
-# command to run tests, e.g. python setup.py test
-script:  make test
+
+script:
+  - "make test"
+
 
 after_script:
-- "pip install scrutinizer-ocular"
-- "ocular"
+  # Send the code coverage to the scrutinizer-CI service
+  - "pip install scrutinizer-ocular"
+  - "ocular"
