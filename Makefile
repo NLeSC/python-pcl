@@ -28,6 +28,12 @@ build/html/readme.html: pcl/_pcl.so conf.py readme.rst
 gh-pages: doc
 	touch build/html/.nojekyll
 	ln -fs readme.html build/html/index.html
+	rm -rf build/html/_static/pcl build/html/_static/tests
+	rm -rf build/html/_static/examples
+	rm -rf build/html/_static/*.las
+	rm -rf build/html/_static/*.pcd
+	rm -rf build/html/_static/*.pyc
+	rm -rf build/html/_static/*.rst
 	./commit-to-gh-pages.sh build/html
 
 showdoc: doc
