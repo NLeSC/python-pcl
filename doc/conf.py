@@ -29,7 +29,7 @@ pygments_style = 'sphinx'
 
 html_theme = 'haiku'
 htmlhelp_basename = 'python-pcldoc'
-html_logo = 'pcl_logo.png'
+html_logo = 'nlesc_logo.png'
 html_title = 'Python Bindings to the Point Cloud Library'
 html_short_title = '%s v%s' % (project, version)
 
