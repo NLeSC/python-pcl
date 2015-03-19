@@ -29,7 +29,7 @@ Introduction
 ============
 
 This is a small python binding to the `pointcloud <http://pointclouds.org/>`_ library.
-Currently, the following parts of the API are wrapped (all methods operate on PointXYZ)
+Currently, the following parts of the API are wrapped (all methods operate on PointXYZRGB)
 point types
 
  * I/O and integration; saving and loading PCD files
@@ -76,10 +76,13 @@ using all the familiar NumPy functionality:
     a[:, 0] = 1             # set x coordinates to 1
     print(p[3])             # prints (1.0, 0.0, 0.0)
 
-More samples can be found in the `examples directory <https://github.com/strawlab/python-pcl/tree/master/examples>`_,
-and in the `unit tests <https://github.com/strawlab/python-pcl/blob/master/tests/test.py>`_.
+More samples can be found in the `examples directory <https://github.com/NLeSC/python-pcl/tree/master/examples>`_,
+and in the `unit tests <https://github.com/NLeSC/python-pcl/blob/master/tests/test.py>`_.
+
+This library is developed for use in our Project Patty, see `this repository <https://github.com/NLeSC/PattyAnalytics/>`_ for more interesting examples.
 
 This work was supported by `Strawlab <http://strawlab.org/>`_ and `the Netherlands eScience Center <http://nlesc.nl/>`_
+
 
 Requirements
 ------------
