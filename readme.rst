@@ -80,6 +80,7 @@ More samples can be found in the `examples directory <https://github.com/NLeSC/p
 and in the `unit tests <https://github.com/NLeSC/python-pcl/blob/master/tests/test.py>`_.
 
 This library is developed for use in our Project Patty, see `this repository <https://github.com/NLeSC/PattyAnalytics/>`_ for more interesting examples.
+Also, the reading and writing of LAS files is implemented there.
 
 This work was supported by `Strawlab <http://strawlab.org/>`_ and `the Netherlands eScience Center <http://nlesc.nl/>`_
 
