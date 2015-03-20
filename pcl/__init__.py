@@ -17,6 +17,43 @@ class BasePyPointCloud(BasePointCloud):
     def __reduce__(self):
         return type(self), (self.to_array(),)
 
+    def rotate_around_center(pointcloud, rotation):
+        '''Rotate a pointlcloud around its own center
+
+        Arguments:
+
+            pointcloud : pcl.PointCloud
+                Pointcloud to be registered.
+
+            rotation : np.array([4,4])
+                Transformation, rotation is the left upper part of the matrix
+                Any translation is ignored
+        '''
+         
+        data = pointcloud.to_array()
+        mean = np.mean( data, axis=0 )
+
+        # center the poincloud at the origin
+        transform = np.eye(4)
+        transform[0,3] = -mean[0]
+        transform[1,3] = -mean[1]
+        transform[2,3] = -mean[2]
+        pointcloud.transform( transform )
+
+        # apply rotation, but set any translation to zero
+        pure_rotation = rotation
+        pure_rotation[0,3] = 0.0
+        pure_rotation[1,3] = 0.0
+        pure_rotation[2,3] = 0.0
+        pointcloud.transform( pure_rotation )
+       
+        # move the pointcloud back to its original location
+        transform = np.eye(4)
+        transform[0,3] = mean[0]
+        transform[1,3] = mean[1]
+        transform[2,3] = mean[2]
+        pointcloud.transform( transform )
+
     def transform(self, t):
         """Apply rigid transformation t, in-place.
 
