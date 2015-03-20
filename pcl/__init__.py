@@ -17,6 +17,41 @@ class BasePyPointCloud(BasePointCloud):
     def __reduce__(self):
         return type(self), (self.to_array(),)
 
+    def scale_around_center(pointcloud, factor):
+        '''Scale a pointlcloud wrt. its own center
+
+        Arguments:
+
+            pointcloud : pcl.PointCloud
+                Pointcloud to be registered.
+
+            rotation : np.array([4,4])
+                Transformation, rotation is the left upper part of the matrix
+                Any translation is ignored
+        '''
+         
+        data = pointcloud.to_array()
+        mean = np.mean( data, axis=0 )
+
+        # center the poincloud at the origin
+        transform = np.eye(4)
+        transform[0,3] = -mean[0]
+        transform[1,3] = -mean[1]
+        transform[2,3] = -mean[2]
+        pointcloud.transform( transform )
+
+        # apply scale
+        transform = np.eye(4) * factor
+        transform[3,3] = 1.0
+        pointcloud.transform( transform )
+       
+        # move the pointcloud back to its original location
+        transform = np.eye(4)
+        transform[0,3] = mean[0]
+        transform[1,3] = mean[1]
+        transform[2,3] = mean[2]
+        pointcloud.transform( transform )
+
     def rotate_around_center(pointcloud, rotation):
         '''Rotate a pointlcloud around its own center
 
