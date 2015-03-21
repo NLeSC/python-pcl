@@ -17,77 +17,91 @@ class BasePyPointCloud(BasePointCloud):
     def __reduce__(self):
         return type(self), (self.to_array(),)
 
-    def scale_around_center(pointcloud, factor):
-        '''Scale a pointlcloud wrt. its own center
+    # TODO there is probably an PCL function for this
+    def center(self):
+        '''Returns the center of mass of the pointcloud'''
+
+        mean = np.mean( np.asarray(self), axis=0 )
+        return mean
+
+    # TODO there is probably an PCL function for this, and this implementation
+    # could be optimized
+    def scale(self, factor, origin=np.array([0,0,0]) ):
+        '''Scale the pointlcloud from an origin, in-place:
+             pc -> (pc - origin) * scale + orgin
 
         Arguments:
 
-            pointcloud : pcl.PointCloud
-                Pointcloud to be registered.
+            factor : 
+                Scale factor
 
-            rotation : np.array([4,4])
-                Transformation, rotation is the left upper part of the matrix
-                Any translation is ignored
+            origin : array
+                Origin of the scaling, defaults to [0,0,0]
         '''
          
-        data = pointcloud.to_array()
-        mean = np.mean( data, axis=0 )
-
-        # center the poincloud at the origin
+        # center the poincloud at the given origin
         transform = np.eye(4)
-        transform[0,3] = -mean[0]
-        transform[1,3] = -mean[1]
-        transform[2,3] = -mean[2]
-        pointcloud.transform( transform )
+        transform[0,3] = -origin[0]
+        transform[1,3] = -origin[1]
+        transform[2,3] = -origin[2]
+        self.transform( transform )
 
-        # apply scale
+        # apply scale and move the pointcloud back to its original location
         transform = np.eye(4) * factor
+        transform[0,3] = origin[0]
+        transform[1,3] = origin[1]
+        transform[2,3] = origin[2]
         transform[3,3] = 1.0
-        pointcloud.transform( transform )
-       
-        # move the pointcloud back to its original location
-        transform = np.eye(4)
-        transform[0,3] = mean[0]
-        transform[1,3] = mean[1]
-        transform[2,3] = mean[2]
-        pointcloud.transform( transform )
+        self.transform( transform )
 
-    def rotate_around_center(pointcloud, rotation):
-        '''Rotate a pointlcloud around its own center
+
+    # TODO there is probably an PCL function for this, and this implementation
+    # could be optimized
+    def rotate(self, rotation, origin=np.array([0,0,0]) ):
+        '''Rotate the pointlcloud around an origin, in-place:
+            pc -> M . (pc - origin) + origin
 
         Arguments:
 
-            pointcloud : pcl.PointCloud
-                Pointcloud to be registered.
+            rotation : array
+                Rotation matrix of shape [3,3]
 
-            rotation : np.array([4,4])
-                Transformation, rotation is the left upper part of the matrix
-                Any translation is ignored
+            origin : array
+                Origin of rotation, defaults to [0,0,0]
         '''
          
-        data = pointcloud.to_array()
-        mean = np.mean( data, axis=0 )
-
-        # center the poincloud at the origin
+        # center the poincloud at the given origin
         transform = np.eye(4)
-        transform[0,3] = -mean[0]
-        transform[1,3] = -mean[1]
-        transform[2,3] = -mean[2]
-        pointcloud.transform( transform )
+        transform[0,3] = -origin[0]
+        transform[1,3] = -origin[1]
+        transform[2,3] = -origin[2]
+        self.transform( transform )
+         
+        # apply rotation and move back to original position
+        transform[0:3,0:3] = rotation
+        transform[0,3] = origin[0]
+        transform[1,3] = origin[1]
+        transform[2,3] = origin[2]
+        self.transform( transform )
 
-        # apply rotation, but set any translation to zero
-        pure_rotation = rotation
-        pure_rotation[0,3] = 0.0
-        pure_rotation[1,3] = 0.0
-        pure_rotation[2,3] = 0.0
-        pointcloud.transform( pure_rotation )
-       
-        # move the pointcloud back to its original location
+    # TODO there is probably an PCL function for this, and this implementation
+    # could be optimized
+    def translate(self, translation):
+        '''Translate the pointcloud, in-place
+            pc ->  pc + translation
+
+        Arguments:
+
+            translation : array
+                Array containing dx, dy, dz
+        '''
+         
+        # center the poincloud at the given origin
         transform = np.eye(4)
-        transform[0,3] = mean[0]
-        transform[1,3] = mean[1]
-        transform[2,3] = mean[2]
-        pointcloud.transform( transform )
+        transform[0,3] = translation[0]
+        transform[1,3] = translation[1]
+        transform[2,3] = translation[2]
+        self.transform( transform )
 
     def transform(self, t):
         """Apply rigid transformation t, in-place.

@@ -547,3 +547,39 @@ class TestColour(unittest.TestCase):
         colours = self.pc.to_array()[:, 3:6]
         self.assertGreaterEqual(colours.max(), 0, "All colour info is zero!")
         self.assertLessEqual(colours.max(), 255, "Colour info out of range!")
+
+
+class TestTransforms(unittest.TestCase):
+
+    def testCenter(self):
+        pc = pcl.PointCloud( [[1,0,0], [0,1,0]] )
+        assert_array_equal( pc.center(), np.array( [0.5,0.5,0] ) )
+
+    def testTranslate(self):
+        pc = pcl.PointCloud( [[1,0,0], [0,1,0]] )
+        pc.translate( [1,0,0] )
+        assert_array_equal( np.asarray(pc), np.array( [[2,0,0],[1,1,0]] ) )
+
+    def testScale(self):
+        pc = pcl.PointCloud( [[1,0,0], [0,1,0]] )
+        pc.scale( 4 )
+        assert_array_equal( np.asarray(pc), np.array( [[4,0,0],[0,4,0]] ) )
+
+    def testScaleOrigin(self):
+        pc = pcl.PointCloud( [[1,0,0], [0,1,0]] )
+        pc.scale( 4, origin=[1,0,0] )
+        assert_array_equal( np.asarray(pc), np.array( [[1,0,0],[-3,4,0]] ) )
+
+    def testRotate(self):
+        pc = pcl.PointCloud( [[1,0,0], [0,1,0]] )
+        rotate = np.array( [[0,1,0], [-1,0,0], [0,0,1]] )
+        pc.rotate( rotate )
+        assert_array_equal( np.asarray(pc), np.array( [[0,-1,0],[1,0,0]] ) )
+
+    def testRotateOrigin(self):
+        pc = pcl.PointCloud( [[2,0,0], [1,1,0]] )
+        rotate = np.array( [[0,1,0], [-1,0,0], [0,0,1]] )
+        pc.rotate( rotate, origin=[1,0,0] )
+        assert_array_equal( np.asarray(pc),  np.array( [[1,-1,0],[2,0,0]] ))
+
+    
