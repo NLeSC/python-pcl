@@ -37,6 +37,11 @@ class BasePyPointCloud(BasePointCloud):
 
             origin : array
                 Origin of the scaling, defaults to [0,0,0]
+
+        Returns:
+
+            self : point cloud
+                Returns self, for convenience.
         '''
          
         # center the poincloud at the given origin
@@ -54,6 +59,8 @@ class BasePyPointCloud(BasePointCloud):
         transform[3,3] = 1.0
         self.transform( transform )
 
+        return self
+
 
     # TODO there is probably an PCL function for this, and this implementation
     # could be optimized
@@ -68,6 +75,11 @@ class BasePyPointCloud(BasePointCloud):
 
             origin : array
                 Origin of rotation, defaults to [0,0,0]
+
+        Returns:
+
+            self : point cloud
+                Returns self, for convenience.
         '''
          
         # center the poincloud at the given origin
@@ -84,6 +96,8 @@ class BasePyPointCloud(BasePointCloud):
         transform[2,3] = origin[2]
         self.transform( transform )
 
+        return self
+
     # TODO there is probably an PCL function for this, and this implementation
     # could be optimized
     def translate(self, translation):
@@ -94,6 +108,11 @@ class BasePyPointCloud(BasePointCloud):
 
             translation : array
                 Array containing dx, dy, dz
+
+        Returns:
+
+            self : point cloud
+                Returns self, for convenience.
         '''
          
         # center the poincloud at the given origin
@@ -102,6 +121,8 @@ class BasePyPointCloud(BasePointCloud):
         transform[1,3] = translation[1]
         transform[2,3] = translation[2]
         self.transform( transform )
+
+        return self
 
     def transform(self, t):
         """Apply rigid transformation t, in-place.
