@@ -1,5 +1,6 @@
 # YAML 1.2
 ---
+abstract: "Python bindings for Point Cloud Library"
 authors: 
   -
     affiliation: "Netherlands eScience Center"
@@ -51,6 +52,6 @@ keywords:
   - "point cloud library"
 license: "BSD-3-Clause"
 message: "If you use this software, please cite it using these metadata."
-title: "Python bindings for Point Cloud Library"
+title: "python-pcl"
 version: "1.0.0"
 ...

@@ -46,6 +46,7 @@
             "name": "chrisidefix"
         }
     ],
+    "description": "Python bindings for Point Cloud Library",
     "keywords": [
         "Python bindings",
         "point cloud library"
@@ -53,5 +54,5 @@
     "license": {
         "id": "BSD-3-Clause"
     },
-    "title": "Python bindings for Point Cloud Library"
+    "title": "python-pcl"
 }
