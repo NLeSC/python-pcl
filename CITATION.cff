@@ -49,6 +49,7 @@ doi: "10.5281/zenodo.1435460"
 keywords: 
   - "Python bindings"
   - "point cloud library"
+license: "BSD-3-Clause"
 message: "If you use this software, please cite it using these metadata."
 title: "Python bindings for Point Cloud Library"
 version: "1.0.0"
