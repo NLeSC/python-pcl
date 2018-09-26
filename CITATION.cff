@@ -1,0 +1,57 @@
+# YAML 1.2
+---
+abstract: "Python bindings for Point Cloud Library"
+authors: 
+  -
+    affiliation: "Netherlands eScience Center"
+    family-names: Buitinck
+    given-names: Lars
+  -
+    family-names: Stowers
+    given-names: John
+  -
+    affiliation: "Netherlands eScience Center"
+    family-names: Attema
+    given-names: Jisk
+  -
+    affiliation: "Netherlands eScience Center"
+    family-names: Meijer
+    given-names: "Christiaan W."
+  -
+    affiliation: "Netherlands eScience Center"
+    family-names: Borgdorff
+    given-names: Joris
+  -
+    family-names: psporysz
+  -
+    affiliation: "Netherlands eScience Center"
+    family-names: "Martinez-Ortiz"
+    given-names: Carlos
+  -
+    family-names: Straw
+    given-names: Andrew
+  -
+    affiliation: "Netherlands eScience Center"
+    family-names: Noorishad
+    given-names: Parisa
+  -
+    family-names: Booth
+    given-names: James
+  -
+    family-names: Lea
+    given-names: Colin
+  -
+    family-names: chriswl
+  -
+    family-names: chrisidefix
+cff-version: "1.0.3"
+date-released: 2018-09-26
+doi: "10.5281/zenodo.1435460"
+keywords: 
+  - "Python bindings"
+  - "point cloud library"
+license: "BSD-3-Clause"
+message: "If you use this software, please cite it using these metadata."
+title: "python-pcl"
+version: "1.0.0"
+...

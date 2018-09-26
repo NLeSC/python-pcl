@@ -1,0 +1,58 @@
+{
+    "creators": [
+        {
+            "affiliation": "Netherlands eScience Center",
+            "name": "Buitinck, Lars"
+        },
+        {
+            "name": "Stowers, John"
+        },
+        {
+            "affiliation": "Netherlands eScience Center",
+            "name": "Attema, Jisk"
+        },
+        {
+            "affiliation": "Netherlands eScience Center",
+            "name": "Meijer, Christiaan W."
+        },
+        {
+            "affiliation": "Netherlands eScience Center",
+            "name": "Borgdorff, Joris"
+        },
+        {
+            "name": "psporysz"
+        },
+        {
+            "affiliation": "Netherlands eScience Center",
+            "name": "Martinez-Ortiz, Carlos"
+        },
+        {
+            "name": "Straw, Andrew"
+        },
+        {
+            "affiliation": "Netherlands eScience Center",
+            "name": "Noorishad, Parisa"
+        },
+        {
+            "name": "Booth, James"
+        },
+        {
+            "name": "Lea, Colin"
+        },
+        {
+            "name": "chriswl"
+        },
+        {
+            "name": "chrisidefix"
+        }
+    ],
+    "description": "Python bindings for Point Cloud Library",
+    "keywords": [
+        "Python bindings",
+        "point cloud library"
+    ],
+    "license": {
+        "id": "BSD-3-Clause"
+    },
+    "title": "python-pcl"
+}
