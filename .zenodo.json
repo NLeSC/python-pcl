@@ -50,5 +50,8 @@
         "Python bindings",
         "point cloud library"
     ],
+    "license": {
+        "id": "BSD-3-Clause"
+    },
     "title": "Python bindings for Point Cloud Library"
 }
